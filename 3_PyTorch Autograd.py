@@ -1,9 +1,11 @@
 #PyTorch Autograd
 
 """
-# Why we need a PyTorch Autograd?
+# Why we need a PyTorch Autograd? :- Auto Matic machine for Automatic Gradient Calculation.
 ->This is a Core concept of the PyTorch its provides automatic differentiation for tensor operation.
 -> Its enable gradiant computation , which is essential for training machine learning models using optimization algoridhms like gradiant descrate.
+
+->Autograd basically एक automatic differentiation engine है. इसका काम है हर operation का gradient (यानि derivatives) निकालना. जब भी आप कोई forward pass करते हो, autograd पीछे-पीछे सब gradient की bookkeeping करता जाता है.
 
 #Lets see how to find the Values of the Any derivatives using the PyTorch.
 -> First we are make one Tensor fot do this, and set the "requires_grad" is "True" this is notify that its find the derivatives.
@@ -13,11 +15,14 @@
 
 # Backward Propagation (Backward Pass / Backpropagation)
 -> It is the process of calculating gradients based on the loss and updating the model’s weights to reduce the error.
+->Backpropagation असल में एक algorithm है, जो इन gradients को use करके neural network के weights और biases को update करता है. यानि autograd gradients निकालता है, और backpropagation उन gradients का इस्तेमाल करके network को सिखाता है कि अगली बार prediction बेहतर कैसे करनी है.
 
 ## Derivative = output kitna change hota hai jab input/weight badalta hai
+-> derivatives का सीधा-साधा मतलब है कि जब आपका neural network कुछ output देता है, तो ये पता लगाना कि अगर आप उसके input या weights को थोड़ा सा बदलें, तो output कितना बदलेगा. यानी derivatives उस बदलाव की दर दिखाते हैं.
+-> Neural networks में derivatives इसीलिए ज़रूरी हैं क्योंकि इनकी मदद से model ये सीखता है कि उसे अपने weights को कैसे adjust करना है ताकि उसका output सही दिशा में जाए. मतलब जब आप loss को कम करना चाहते हैं, तो derivatives बताते हैं कि किस direction में weights को बदलना है.
 
-## Gradient = derivative ki actual value
-
+## Gradient = ACtual value of the Derivative.
+-> 
 ## Auto-Grad = PyTorch ka system jo ye gradients khud calculate karta hai
 
 
@@ -181,40 +186,40 @@ x.grad.zero_()
 
 import torch
 
-# x = torch.tensor(3.0,requires_grad=True)
-# y = x**2
-# print(x)
-# print(y)
-# y.backward()
-# print(x.grad)
+x = torch.tensor(3.0,requires_grad=True)
+y = x**2
+print(x)
+print(y)
+y.backward()
+print(x.grad)
 
-#Oprion 1 :- requires_grad=False
-# x.requires_grad_(False)
-# print(x)
-# y = x**3
-# y.backward()
+Oprion 1 :- requires_grad=False
+x.requires_grad_(False)
+print(x)
+y = x**3
+y.backward()
 
-#Option 2 :- detach()
-# x = torch.tensor(5.0,requires_grad=True)
-# z = x.detach()
-# y = x**2
+Option 2 :- detach()
+x = torch.tensor(5.0,requires_grad=True)
+z = x.detach()
+y = x**2
 
-# print(y)
+print(y)
 
-# y1 = z**2
+y1 = z**2
 
-# y.backward()
-# print(x.grad)
+y.backward()
+print(x.grad)
 
-# y1.backword()
-# print(z.grad)
+y1.backword()
+print(z.grad)
 
-#Option 3 :- torch.no_grad()
+Option 3 :- torch.no_grad()
 
-# x = torch.tensor(6.0,requires_grad=True)
+x = torch.tensor(6.0,requires_grad=True)
 
-# with torch.no_grad():
-#     y = x**2
-# print(y)
-# y.backward()
-# print(x.grad)
+with torch.no_grad():
+    y = x**2
+print(y)
+y.backward()
+print(x.grad)
