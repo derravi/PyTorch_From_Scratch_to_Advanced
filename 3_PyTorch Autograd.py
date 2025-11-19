@@ -14,7 +14,14 @@
 # Backward Propagation (Backward Pass / Backpropagation)
 -> It is the process of calculating gradients based on the loss and updating the model’s weights to reduce the error.
 
-#Example - 1
+## Derivative = output kitna change hota hai jab input/weight badalta hai
+
+## Gradient = derivative ki actual value
+
+## Auto-Grad = PyTorch ka system jo ye gradients khud calculate karta hai
+
+
+#Example - 1 (Scaler Input)
 
 import torch
 
@@ -36,7 +43,7 @@ y.backward() #make the derivative of the "Y" Equestion.
 print(f"Value of the Derivative base ont the value {x} is {x.grad}.")
 
 
-#Example - 2
+#Example - 2 (Scaler Input)
 
 import torch
 
@@ -54,7 +61,7 @@ z.backward()
 print(x.grad)
 """
 
-#Example - 3
+#Example - 3 (Scaler Input)
 """
 
 (x)--------->(w)--------->(Sigmoid - (b) )--------->y_predict------------->(loss)
@@ -92,7 +99,6 @@ b- tensor(requeres_grade=True)
 (2) y_predict = sigmoid(z)
 (3) loss = binory_corss_entropy_loss(y_predict,t-Actual)
 
-"""
 
 import torch
 import torch.nn.functional as F
@@ -127,6 +133,88 @@ print("\nThe Value of the Loss is :",loss)
 #Do the Backword
 loss.backward()
 
-#Print the Grade for the W and B.
+#Print the Grade for the W and B. Gradiantmeans the Actual Value of the Derivative.
 print("\nThe Value of W grade is :",w.grad)
-print("The Value of b grade is :",b.grad)
+print("The Value of b gr2ade is :",b.grad)
+
+
+#Vector Input Tensors.
+import torch
+
+x = torch.tensor([1.0,2.0,3.0],requires_grad=True)
+
+y = (x**2).mean()
+
+y.backward()
+
+print("Value of X",x)
+print("Value of Y",y)
+#Lets Check manualy
+#  (1**2)/3 + (2**2)/3 + (3**2)/3 
+# (0.33+1.33+3) y = 4.66 (Forword Direction.)
+print("Value of Gradiant:",x.grad)
+
+#backword directions.
+#Derivative of x**2 = 2x/3
+# (1*2)/3 = 0.6666
+# (2*2)/3 = 1.3333
+# (3*2)/3 = 2.0
+
+#Whenever we are run backword and print gradiant so its make a issues , the issues is that the gradiant is added into the previus gradiant.
+#-> Like we are find the gradiant of 3 is 9 but we are re-run the same code so its print the gradiant is 18. its add the previus one also.
+#-> So resolve this problem we are use "zeros_()" function.
+#-> like the belov code.
+
+import torch
+
+x = torch.tensor(3.0,requires_grad=True)
+y = x**2
+y.backward()
+print(x.grad)
+x.grad.zero_()
+"""
+
+#How to disable Gradiant Tracking
+#-> Whenever we dont need to find the gradiant that time we are use this.
+#-> Whenever we are predict the Tensors that time we dont need to track the gradiant so that time we are stop the gradiant tracking.
+#-> Lets asume one senario , you are completely find one gradiant and then we are re use the backword tracking that time we dont need to find the gradiant.
+
+import torch
+
+# x = torch.tensor(3.0,requires_grad=True)
+# y = x**2
+# print(x)
+# print(y)
+# y.backward()
+# print(x.grad)
+
+#Oprion 1 :- requires_grad=False
+# x.requires_grad_(False)
+# print(x)
+# y = x**3
+# y.backward()
+
+#Option 2 :- detach()
+# x = torch.tensor(5.0,requires_grad=True)
+# z = x.detach()
+# y = x**2
+
+# print(y)
+
+# y1 = z**2
+
+# y.backward()
+# print(x.grad)
+
+# y1.backword()
+# print(z.grad)
+
+#Option 3 :- torch.no_grad()
+
+# x = torch.tensor(6.0,requires_grad=True)
+
+# with torch.no_grad():
+#     y = x**2
+# print(y)
+# y.backward()
+# print(x.grad)
