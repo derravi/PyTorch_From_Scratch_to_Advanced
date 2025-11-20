@@ -177,7 +177,7 @@ y = x**2
 y.backward()
 print(x.grad)
 x.grad.zero_()
-"""
+
 
 #How to disable Gradiant Tracking
 #-> Whenever we dont need to find the gradiant that time we are use this.
@@ -223,3 +223,4 @@ with torch.no_grad():
 print(y)
 y.backward()
 print(x.grad)
+"""
