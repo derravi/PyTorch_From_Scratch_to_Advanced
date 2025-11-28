@@ -37,5 +37,36 @@ nn.Module → base class jisse sare modules bante hain
 # torch.optim
 -> torch.optim is a collection of optimizers in PyTorch that adjust the model’s weights during training so the model learns better.
 
+Sample Example of the small nurak network.
+
+#Sample NN Using the NN Module of the PyTorch
+
+import torch
+import torch.nn as nn
+
+class Model(nn.Module):
+    
+    def __init__(self, num_features):
+        super().__init__()
+        self.linear = nn.Linear(num_features, 1)
+        self.sigmoid = nn.Sigmoid()
+    
+    def forward(self, features):
+        out = self.linear(features)
+        out = self.sigmoid(out) 
+        return out
+#Create Model of NN
+
+feture = torch.rand(10,5)
+
+model = Model(feture.shape[1])
+
+print(model(feture))
+
+# Create Model
+# features = torch.rand(10, 5)
+# model = Model(features.shape[1])
+
+# print(model(features))
 
 """
