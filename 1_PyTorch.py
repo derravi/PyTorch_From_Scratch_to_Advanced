@@ -26,7 +26,7 @@
 
     
     # Key Fetures:
-    (1) Tensor Computation
+    (1) Tensor Computation (Multi Dimentional Array)
     -> Tensor Computation it menas Multidimentional Array, it will be 1D,2D,3D...etc.
     -> It Helps to represent the different types of data into the Tensor Computations.
     -> PyTorch is Convert any data into the tensor data(Its Convert data into Multi Dimentional Arrays). 
