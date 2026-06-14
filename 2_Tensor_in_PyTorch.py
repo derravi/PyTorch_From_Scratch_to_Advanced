@@ -5,25 +5,30 @@
 # Whare are Tensors?
 -> Tensor is a specializes multi_dimentional Array designed for mathematical and computational efficiancy.
 -> Its a Generalization of the Array.
--> Dimention:- Koi Perticular tensor ketla direction ma spread out che tene.
+
+-> Dimention:- A Perticular tensor is spred in how many direction its known as a Dimention in tensor.
 -> Our Tensor spread in how many directions that is known as Dimentions.
     -> Ex.
+
     (i) 0D Tensor
         Scaler:- 0 Dimentional Array(Single Number):-
         -> Its Represent a Single number.
-        -> Loss Value:- After a forwared pass loss functions compute a single scaler values, this is represent the differenvce between predicted and actual out put.
+        -> Loss Value:- After a forwared pass loss functions compute a single scaler values, this is represent the differance between predicted and actual out put.
         -> 5,2.3,4,81
+
     (ii) 1D Tensor 
         Vecors:- 1 Dimentional Tensor:- This is a List of Numbers.
         -> The Array is the best example of the Vecores or one dimentional array.
         -> Its represent the sequance of collection of values.
         -> [1.2,-1.3,0.8]
+
     (iii) 2D Tensor
         Matrices:- 2 Dimentional Tensor
         -> Like one Grayscale image.
         -> [[1,2,3],
             [4,5,6]]
         -> This is a 2 Dimentional array OR 2 Dimentional Tensor
+
     (iv) 3D Tensor
         Colured Images:- 3D Array / 3D Tensor
         -> Ex. RGB Image:- Shape[125,255,3] 
@@ -57,7 +62,7 @@
     -> Its represent the Data like Audio,Video,Images,..etc into the Tensor.
 
     (iii) Efficiant Computatinos.
-    -> Tensor are optimized for hardware acceleration, allowing computations on GPU or TPUs, which are crucial for training deep learning models.
+    -> Tensor are optimized for hardware acceleration, allowing computations on GPU or CPUs, which are crucial for training deep learning models.
 
 #Where are Tensors use in Deep Learning?
     (i) Data Storage
