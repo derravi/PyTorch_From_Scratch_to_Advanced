@@ -83,7 +83,7 @@
 #----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Instalation of the PyTorch into my Systems.
-->  pip install torch `
+->  pip install torch
 """
 #To Check the Version of the Torch
 # import torch
@@ -150,7 +150,7 @@ import torch
 # a  = torch.empty(2,3)
 
 #type() Function.
-# print(typef(a))
+# print(type(a))
 
 #zeros() functions.
 # print(torch.zeros(3,2))
